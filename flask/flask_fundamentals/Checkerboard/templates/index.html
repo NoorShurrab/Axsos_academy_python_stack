@@ -1,0 +1,26 @@
+{# 1. This code constructs the grid based on the parity (even/odd) comparison of both the row and column indices.
+2. The primary color is applied only if both indices are either even or odd, creating the checkerboard pattern. #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkerboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="checkerboard">
+        {% for r in range(0, x) %}
+            <div class="row">
+                {% for c in range(0, y) %}
+                    {% if (r%2 == 0 and c%2 == 0) or (r%2 != 0 and c%2 != 0) %}
+                        <div class="box color0"></div>
+                    {% else %}
+                        <div class="box color1"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

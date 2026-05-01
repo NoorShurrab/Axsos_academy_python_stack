@@ -1,0 +1,51 @@
+<!-- This file displays a form that includes:    
+    - Text field for the user's name (required) 
+    - Dropdown to select a Dojo location        
+    - Dropdown to select a favorite language   
+    - Optional comment textarea                 
+    Form submits data to "/result" via POST  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page_title}}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}"/>
+</head>
+<body>
+    <form action="/result" method="post" class="container">
+        <div class="basic">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="basic">
+            <label for="location">Dojo Location:</label>
+            <select id="location" name="location" >
+                <option value="San Jose">San Jose</option>
+                <option value="Seattle">Seattle</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="Chicago">Chicago</option>
+            </select>
+        </div>
+
+        <div class="basic">
+            <label for="language">Favorite Language:</label>
+            <select id="language" name="language">
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Java">Java</option>
+                <option value="C++">C++</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="comment">Comment (optional):</label><br>
+            <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+        </div>
+
+        <button type="submit" value="submit">Button</button>
+
+    </form>
+</body>
+</html>

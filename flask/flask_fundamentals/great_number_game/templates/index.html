@@ -1,0 +1,40 @@
+<!-- This code displays the guessing form and   
+    shows the result based on the user's guess: 
+    - "low"     : red box with "Too low!"      
+    - "high"    : red box with "Too high!"      
+    - "correct" : green box with the number and a Play again link         
+    Form disappears when the user guesses right -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess!</p>
+
+        {% if result == "low" %}
+            <div class="show red">Too low!</div>
+        {% elif result == "high" %}
+            <div class="show red">Too high!</div>
+        {% elif result == "correct" %}
+            <div class="show green"> {{ secret }} was the number!
+                <br>
+                <a href="/play_again">Play again!</a>
+            </div>
+        {% endif %}
+    
+        {% if result != "correct" %}
+        <form action="/guess" method="post">
+            <input type="number" name="guess" min="1" max="100"/> <br>
+            <button type="submit">Submit</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

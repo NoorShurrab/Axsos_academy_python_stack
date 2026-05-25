@@ -1,0 +1,25 @@
+<!-- Displays the submitted survey data passed from views.py via the context dictionary -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page_title}}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Submitted Info</h1>
+        <ul>
+            <li><span>Name:</span> {{name}}</li>
+            <li><span>Dojo Location:</span> {{location}}</li>
+            <li><span>Favorite Language:</span> {{language}}</li>
+            <li><span>Comment:</span> {{comment}}</li>
+        </ul>
+        <div>
+            <a class="btn" href="/">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    {% load static %}
+    <!-- Load static files and link the external CSS stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Counter</h1>
+        <!-- Display the current session counter value -->
+        <p>{{ request.session.counter }} times</p>
+        <!-- Form to reset the counter by destroying the session -->
+        <form action="/destroy_session" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="reset">Reset</button>
+        </form>
+        <!-- Form to increment the counter by 2 -->
+        <form action="/increment_two" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="add">+2</button>
+        </form>
+    </div>
+</body>
+</html>

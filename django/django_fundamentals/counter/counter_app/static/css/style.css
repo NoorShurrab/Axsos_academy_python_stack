@@ -1,0 +1,28 @@
+/* Global styles: defines layout, typography, and button styling for the counter app */
+* {
+    box-sizing: border-box;
+    font-family: tahoma, sans-serif;
+}
+.container {
+    width:70%;
+    margin: 50px auto;
+    text-align:center;
+}
+p {
+    font-size:1rem;
+}
+.reset {
+    background-color: #d63c0e;
+    padding:5px 25px;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.add {
+    background-color: #4779dd;
+    padding:5px 25px;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+}

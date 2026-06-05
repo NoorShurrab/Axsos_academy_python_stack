@@ -1,0 +1,57 @@
+<!-- This code displays the guessing form and   
+    shows the result based on the user's guess: 
+    - "low"     : red box with "Too low!"      
+    - "high"    : red box with "Too high!"      
+    - "correct" : green box with the number and a Play again link         
+    Form disappears when the user guesses right -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess!</p>
+
+        {% if request.session.status == "low" %}
+            <div class="show red">Too low!</div>
+        {% elif request.session.status == "high" %}
+            <div class="show red">Too high!</div>
+        {% elif request.session.status == "correct" %}
+            <div class="show green"> {{ request.session.secret_num }} was the number!
+                <br>
+            <form action="/play_again" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="again">Play again!</button>
+            </form>
+            </div>
+        {% endif %}
+        
+        {% if request.session.status == 'lose' %}
+        <div class="show gray">
+            <p>You Lose!</p>
+            <p>The number was {{ request.session.secret_num }}</p>
+            <form action="/play_again" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="again">Try Again!</button>
+            </form>
+        </div>
+    {% endif %}
+
+
+        {% if request.session.status != "correct" %}
+        <form action="/guess" method="POST">
+            {% csrf_token %}
+            <input type="number" name="guess" min="1" max="100"/> <br>
+            <button type="submit">Submit</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

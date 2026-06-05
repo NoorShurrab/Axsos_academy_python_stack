@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section class="container">
+        <div class="gold">
+            <h3>Your Gold: </h3>
+            <p>{{ request.session.total_gold }}</p>
+        </div>
+        <div class="all">
+            <div class="building-box">
+                <h3>Farm</h3>
+                <p>(earns 10-20 gold)</p>
+                <form action="{% url 'process_money' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="building" value="farm" />
+                    <input type="submit" value="Find Gold!" class="btn-gold" />
+                </form>
+            </div>
+            <div class="building-box">
+                <h3>Cave</h3>
+                <p>(earns 10-20 gold)</p>
+                <form action="{% url 'process_money' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="building" value="cave" />
+                    <input type="submit" value="Find Gold!" class="btn-gold" />
+                </form>
+            </div>
+            <div class="building-box">
+                <h3>House</h3>
+                <p>(earns 10-20 gold)</p>
+                <form action="{% url 'process_money' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="building" value="house" />
+                    <input type="submit" value="Find Gold!" class="btn-gold" />
+                </form>
+            </div>
+            <div class="building-box">
+            <h3>Quest</h3>
+            <p>(earns/takes 0 - 50 gold)</p>
+                <form action="{% url 'process_money' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="building" value="quest" />
+                    <input type="submit" value="Find Gold!" class="btn-gold" />
+                </form>
+            </div>
+        </div>
+        
+        <h3>Activities:</h3>
+        <div class="activities-box">
+        {% for activity in request.session.activities %}
+            <p class="{{ activity.color }}">{{ activity.text }}</p>
+        {% endfor %}    
+        </div>
+
+        <form action="{% url 'reset' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="reset-btn">Reset Game</button>
+    </form>
+    </section>
+</body>
+</html>

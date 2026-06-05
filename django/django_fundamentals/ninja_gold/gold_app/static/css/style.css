@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+    width: 80%;
+    font-family: tahoma;
+    margin: 0 auto;
+}
+.gold {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.gold p {
+    border: 2px solid black;
+    padding: 10px 30px;
+}
+.all {
+    display: flex;
+    gap: 40px; 
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.building-box {
+    border: 2px solid #000; 
+    padding: 20px; 
+    width: 300px; 
+    text-align: center; 
+    background: #fff;
+}
+.building-box h3 { 
+    margin-top: 0; 
+}
+.btn-gold { 
+    background: #fff; 
+    border: 1px solid #000; 
+    padding: 5px 15px; 
+    cursor: pointer; 
+    box-shadow: 2px 2px #ccc; 
+}
+.activities-box { 
+    border: 2px solid #000; 
+    height: 150px; 
+    overflow-y: scroll;
+    padding: 2px 10px; 
+    background: #fff;
+}
+.reset-btn { 
+    margin-top: 15px; 
+    padding: 5px 15px; 
+    background: #81d7ea; 
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
+.green { 
+    color: green; 
+    font-weight: 500; 
+}
+.red { 
+    color: red; 
+    font-weight: 500; 
+}

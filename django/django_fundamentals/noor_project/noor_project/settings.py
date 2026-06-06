@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogs', # Add the blogs app to the list of installed apps
+    'surveys', # Add the surveys app to the list of installed apps
+    'users', # Add the users app to the list of installed apps
 ]
 
 MIDDLEWARE = [

@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 
 # 1. http://127.0.0.1:8000/
-def root(request):
-    return redirect('/blogs')
+# def root(request):
+#     return redirect('/blogs')
 
 # 2. http://127.0.0.1:8000/blogs
 def index(request):
@@ -16,7 +16,7 @@ def new(request):
 
 # 4. http://127.0.0.1:8000/blogs/create
 def create(request):
-    return redirect('/')
+    return redirect('/blogs/')
 
 # 5. http://127.0.0.1:8000/blogs/<number>
 def show(request, number):
@@ -31,9 +31,9 @@ def destroy(request, number):
     return redirect('/blogs')
 
 # 8. http://127.0.0.1:8000/blogs/json 
-def json_bonus(request):
-    data = {
-        "title": "My first blog",
-        "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit."
-    }
-    return JsonResponse(data)
+# def json_bonus(request):
+#     data = {
+#         "title": "My first blog",
+#         "content": "Lorem, ipsum dolor sit amet consectetur adipisicing elit."
+#     }
+#     return JsonResponse(data)

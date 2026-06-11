@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos&Ninjas</title>
+    <!-- Load Django static files tag to use-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+</head>
+<body class="container">
+    <div class="all_forms">
+        <div class="form_box">
+            <h2>Add a Dojo</h2>
+            <form action="/create_dojo" method="POST">
+                {% csrf_token %} <!-- CSRF protection token (required by Django) -->
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>City:</label>
+                    <input type="text" name="city" required>
+                </div>
+                <div class="form-group">
+                    <label>State:</label>
+                    <input type="text" name="state" maxlength="2" required>
+                </div>
+                <div class="btn-container">
+                    <button type="submit">Add</button></div>
+            </form>
+    </div>
+    <div class="form_box">
+        <h2>Add a Ninja</h2>
+        <form action="/create_ninja" method="POST">
+                {% csrf_token %} <!-- CSRF protection token (required by Django) -->
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <input type="text" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Dojo:</label>
+                    <!-- Loop through all dojos to build the dropdown options -->
+                    <select name="dojo_id" required>
+                        {% for dojo in all_dojos %}
+                            <option value="{{ dojo.id }}">{{ dojo.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="btn-container">
+                    <button type="submit">Add</button></div>
+            </form>
+    </div>
+    </div>
+
+    <div class="dojo_list">
+            <h1>All the Dojos</h1>
+            <!-- Loop through all dojos passed from views.py context -->
+            {% for dojo in all_dojos %}
+            <div class="dojo-item">
+                <div class="dojo-header">
+                    <!-- dojo.ninjas.count → total ninjas in this dojo -->
+                    <h3 style="margin: 0;">Ninjas at the {{ dojo.name }} (Total: {{ dojo.ninjas.count }})</h3>
+                    <!-- Delete link → GET /delete_dojo/<dojo_id>
+                    Deletes the dojo and all its ninjas via CASCADE -->
+                    <a href="/delete_dojo/{{ dojo.id }}">Delete Dojo</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through ninjas belonging to this dojo -->
+                        {% for ninja in dojo.ninjas.all %}
+                            <tr>
+                                <td>{{ ninja.first_name }}</td>
+                                <td>{{ ninja.last_name }}</td>
+                            </tr>
+                        <!-- shown when the dojo has no ninjas -->
+                        {% empty %}
+                            <tr>
+                                <td colspan="2" style="padding: 15px; text-align: center; color: gray; font-style: italic;">
+                                    No ninjas in this dojo yet.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        <!-- shown when there are no dojos in the database -->
+        {% empty %}
+            <p style="text-align: center; font-size: 18px; color: #666;">No Dojos found.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

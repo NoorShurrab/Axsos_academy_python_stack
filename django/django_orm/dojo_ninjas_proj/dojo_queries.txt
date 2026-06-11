@@ -1,0 +1,93 @@
+>>> from dojo_ninjas_app.models import Dojo, Ninja
+
+1. Create 3 new dojos
+>>> Dojo.objects.create(name="Coding Dojo Miami", city="Miami", state="FL")
+<Dojo: Dojo object (1)>
+>>> Dojo.objects.create(name="Coding Dojo Chicago", city="Chicago", state="IL")
+<Dojo: Dojo object (2)>
+>>> Dojo.objects.create(name="Coding Dojo New York", city="New York", state="NY")
+<Dojo: Dojo object (3)>
+
+
+2. Delete the 3 dojos you just created
+>>> Dojo.objects.all().delete()
+(3, {'dojo_ninjas_app.Dojo': 3})
+
+
+3. Create 3 more dojos
+>>> Dojo.objects.create(name="Coding Dojo Los Angeles", city="Los Angeles", state="CA")
+<Dojo: Dojo object (4)>
+>>> Dojo.objects.create(name="Coding Dojo Boston", city="Boston", state="MA")
+<Dojo: Dojo object (5)>
+>>> Dojo.objects.create(name="Dojo Gamma", city="Austin", state="TX")
+<Dojo: Dojo object (6)>
+
+
+4. Create 3 ninjas that belong to the first dojo
+>>> Ninja.objects.create(first_name="Noor", last_name="S", dojo=Dojo.objects.first())
+<Ninja: Ninja object (1)>
+>>> Ninja.objects.create(first_name="Heba", last_name="S", dojo=Dojo.objects.first())
+<Ninja: Ninja object (2)>
+>>> Ninja.objects.create(first_name="Mohammed", last_name="S", dojo=Dojo.objects.first())
+<Ninja: Ninja object (3)>
+
+
+5. Create 3 ninjas that belong to the second dojo
+>>> Ninja.objects.create(first_name="Rana", last_name="F", dojo=Dojo.objects.all()[1])
+<Ninja: Ninja object (4)>
+>>> Ninja.objects.create(first_name="John", last_name="Doe", dojo=Dojo.objects.all()[1])
+<Ninja: Ninja object (5)>
+>>> Ninja.objects.create(first_name="Ahmed", last_name="M", dojo=Dojo.objects.all()[1])
+<Ninja: Ninja object (6)>
+
+
+6. Create 3 ninjas that belong to the third dojo
+>>> Ninja.objects.create(first_name="Huda", last_name="S", dojo=Dojo.objects.get(id=6))
+<Ninja: Ninja object (7)>
+>>> Ninja.objects.create(first_name="Mona", last_name="S", dojo=Dojo.objects.get(id=6))
+<Ninja: Ninja object (8)>
+>>> Ninja.objects.create(first_name="Fadl", last_name="S", dojo=Dojo.objects.get(id=6))
+<Ninja: Ninja object (9)>
+
+
+7. Retrieve all the ninjas from the first dojo
+>>> Dojo.objects.first().ninjas.all()
+<QuerySet [<Ninja: Ninja object (1)>, <Ninja: Ninja object (2)>, <Ninja: Ninja object (3)>]>
+
+
+8. Retrieve all the ninjas from the last dojo
+>>> Dojo.objects.last().ninjas.all()
+<QuerySet [<Ninja: Ninja object (7)>, <Ninja: Ninja object (8)>, <Ninja: Ninja object (9)>]>
+
+
+9. Retrieve the last ninja's dojo
+>>> Ninja.objects.last().dojo
+<Dojo: Dojo object (6)>
+
+10. add a new field called "desc" to Dojo class then run migration
+>>> exit()
+now exiting InteractiveConsole...
+
+(django_env) N:\Axsos_academy\Python_Stack\django\django_orm\dojo_ninjas_proj>python manage.py makemigrations
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app\migrations\0002_dojo_desc.py
+    + Add field desc to dojo
+
+(django_env) N:\Axsos_academy\Python_Stack\django\django_orm\dojo_ninjas_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying dojo_ninjas_app.0002_dojo_desc... OK
+
+(django_env) N:\Axsos_academy\Python_Stack\django\django_orm\dojo_ninjas_proj>python manage.py shell
+14 objects imported automatically (use -v 2 for details).
+
+Python 3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+
+11. Create a new dojo
+>>> from dojo_ninjas_app.models import Dojo
+>>> Dojo.objects.create(name="Dojo Delta", city="Denver", state="CO", desc="Brand new specialized Dojo")
+<Dojo: Dojo object (7)>
+>>>

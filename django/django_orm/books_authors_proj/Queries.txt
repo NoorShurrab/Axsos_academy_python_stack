@@ -1,0 +1,87 @@
+>>> from books_authors_app.models import Book, Author
+# 1. Create 5 books
+>>> Book1 = Book.objects.create(title="C Sharp", desc="C# Programming Guide")
+>>> Book2 = Book.objects.create(title="Java", desc="Java Language Fundamentals")
+>>> Book3 = Book.objects.create(title="Python", desc="Python for Beginners")
+>>> Book4 = Book.objects.create(title="PHP", desc="Web Dev with PHP")
+>>> Book5 = Book.objects.create(title="Ruby", desc="Ruby on Rails basics")
+
+# 2. Create 5 different authors
+>>> Author1 = Author.objects.create(first_name="Jane", last_name="Austen")
+>>> Author2 = Author.objects.create(first_name="Emily", last_name="Dickinson")
+>>> Author3 = Author.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+>>> Author4 = Author.objects.create(first_name="William", last_name="Shakespeare")
+>>> Author5 = Author.objects.create(first_name="Lau", last_name="Tzu")
+
+# 3. Exit from shell and and new text field in author's table called "notes"
+>>> exit()
+now exiting InteractiveConsole...
+
+(django_env) N:\Axsos_academy\Python_Stack\django\django_orm\books_authors_proj>python manage.py makemigrations
+Migrations for 'books_authors_app':
+  books_authors_app\migrations\0002_author_notes.py
+    + Add field notes to author
+
+(django_env) N:\Axsos_academy\Python_Stack\django\django_orm\books_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Applying books_authors_app.0002_author_notes... OK
+
+# 4. Change the name of the C Sharp book to C#
+(django_env) N:\Axsos_academy\Python_Stack\django\django_orm\books_authors_proj>python manage.py shell
+14 objects imported automatically (use -v 2 for details).
+
+Python 3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from books_authors_app.models import Book, Author
+>>> book_csharp = Book.objects.get(title="C Sharp")
+>>> book_csharp.title = "C#"
+>>> book_csharp.save()
+
+# 5. Change the first name of the 4th author to Bill
+>>> author_4 = Author.objects.get(id=4)
+>>> author_4.first_name = "Bill"
+>>> author_4.save()
+
+# 6. Assign the first author to the first 2 books
+>>> author_1 = Author.objects.get(id=1)
+>>> book_1 = Book.objects.get(id=1)
+>>> book_2 = Book.objects.get(id=2)
+>>> author_1.books.add(book_1, book_2)
+
+# 7. Assign the second author to the first 3 books
+>>> author_2 = Author.objects.get(id=2)
+>>> book_3 = Book.objects.get(id=3)
+>>> author_2.books.add(book_1, book_2, book_3)
+
+# 8. Assign the third author to the first 4 books
+>>> author_3 = Author.objects.get(id=3)
+>>> book_4 = Book.objects.get(id=4)
+>>> author_3.books.add(book_1, book_2, book_3, book_4)
+
+# 9. Assign the fourth author to the first 5 books
+>>> author_4 = Author.objects.get(id=4)
+>>> book_5 = Book.objects.get(id=5)
+>>> author_4.books.add(book_1, book_2, book_3, book_4, book_5)
+
+# 10. Retrieve all the authors for the 3rd book
+>>> target_book = Book.objects.get(id=3)
+>>> authors_of_book3 = target_book.authors.all()
+
+# 11. Remove the first author of the 3rd book
+>>> target_book.authors.remove(author_1)
+
+# 12. Add the 5th author as one of the authors of the 2nd book
+>>> book_2 = Book.objects.get(id=2)
+>>> author_5 = Author.objects.get(id=5)
+>>> book_2.authors.add(author_5)
+
+# 13. Find all the books that the 3rd author is part of
+>>> author_3 = Author.objects.get(id=3)
+>>> books_of_author3 = author_3.books.all()
+
+# 14. Find all the authors that contributed to the 5th book
+>>> book_5 = Book.objects.get(id=5)
+>>> authors_of_book5 = book_5.authors.all()

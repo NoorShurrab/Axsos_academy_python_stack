@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container {
+    width: 90%;
+    margin: 30px auto;
+}
+h2 {
+    margin-bottom : 10px;
+}
+.form-content {
+    max-width: 500px;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+.form-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.form-group label {
+    width: 100px;         
+    min-width: 100px;     
+}
+.input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column; 
+}
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid black;
+}
+.btn-add {
+    text-align: right;
+}
+button {
+    padding: 5px 20px;
+    background: #28a745;
+    color: white;
+    border: 2px solid black;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px black;
+}
+.field-error {
+    color: #ff3333;
+    font-size: 13px;
+    margin-top: 5px;
+    display : block;
+    font-weight: bold;
+}
+.input-error {
+    border: 2px solid #ff3333 !important;
+    background-color: #fff6f6 !important;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border: 2px solid black;
+}
+th {
+    background-color: #cccccc;
+}
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-right: 2px solid black;
+}
+th:last-child, td:last-child {
+    border-right: none;
+}
+tbody tr:nth-child(odd) {
+    background-color: #f1f2f6;;
+}
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+
+
+.destroy-body {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.card {
+    padding: 30px;
+    display: inline-block;
+    text-align: left;
+}
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.btn-cancel {
+    background: #afb2b4;
+    padding: 8px 20px;
+    color: black;
+    border:2px solid black;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block; 
+    box-shadow: 3px 3px 0px black
+}
+ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+.remove-container {
+    text-align: center;
+}
+.info-label {
+    display: inline-block; 
+    width: 110px;          
+    font-weight: bold;
+    color: #212529;
+}

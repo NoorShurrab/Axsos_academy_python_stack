@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="container">
+
+    <div class="form-content">
+        <h2>Add a new course</h2>
+        <form action="/courses/create" method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label>Name:</label>
+                <div class="input-container">
+                <input type="text" name="name" class="{% if messages %}{% for msg in messages %}{% if 'name' in msg.tags %}input-error{% endif %}{% endfor %}{% endif %}">
+                {% if messages %}
+                    {% for msg in messages %}
+                        {% if 'name' in msg.tags %}
+                            <span class="field-error">⚠️ {{ msg }}</span>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Description:</label>
+                <div class="input-container">
+                <textarea name="description" rows="4" class="{% if messages %}{% for msg in messages %}{% if 'description' in msg.tags %}input-error{% endif %}{% endfor %}{% endif %}"></textarea>
+                {% if messages %}
+                    {% for msg in messages %}
+                        {% if 'description' in msg.tags %}
+                            <span class="field-error">⚠️ {{ msg }}</span>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            </div>
+            <div class="btn-add">
+                <button type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <h2>Courses</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in all_courses %}
+            <tr>
+                <td>{{ course.name }}</td>
+                <td>{{ course.course_description.content }}</td>
+                <td>{{ course.created_at|date:"M jS Y g:i A" }}</td>
+                <td><a href="/courses/destroy/{{ course.id }}" class="remove-link">remove</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

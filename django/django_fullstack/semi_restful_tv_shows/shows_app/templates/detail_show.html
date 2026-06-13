@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TV Show {{ show.id }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="details">
+    <div class="content">
+    <h1>TV Show {{ show.id }}</h1>
+    <ul>
+        <li>Title: {{ show.title }}</li>
+        <li>Network: {{ show.network }}</li>
+        <li>Release Date: {{ show.release_date }}</li>
+        <li>Description: {{ show.description }}</li>
+    </ul>
+    <p>Last Updated: {{ show.updated_at }}</p>
+    
+    <a href="/shows/{{ show.id }}/edit" style="font-size: 1.2rem;">Edit</a> | <a href="/shows/{{ show.id }}/destroy" style="font-size: 1.2rem;">Delete</a>
+    </div>
+    <div class="link">
+        <a href="/shows">Go Back</a>
+    </div>
+    </div>
+</body>
+</html>

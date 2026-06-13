@@ -10,6 +10,13 @@ Demonstrating semi-RESTful routing conventions with full CRUD (Create, Read, Upd
     - View details of a single show
     - Edit an existing show and redirect back to its detail page
     - Delete a show and redirect back to the shows list
+    - Form Validation : Custom validation is implemented via a `ShowManager` on the `Show` model (`create_validator`), checking:
+        - Title must be at least 2 characters
+        - Network must be at least 3 characters
+        - Description (if provided) must be at least 10 characters
+        - Release date must be in the past
+        - Title must be unique (excluding the current show when editing)
+        - Validation errors are displayed using Django messages and redirect back to the form (`/shows/new` or `/shows/<id>/edit`) for correction.
 
 <br>
 
@@ -66,3 +73,11 @@ Demonstrating semi-RESTful routing conventions with full CRUD (Create, Read, Upd
 <br>
 
 ![Show Details](details.png)
+
+<br>
+
+![Validate](validate.png)
+
+<br>
+
+![If title exist](title_exist.png)

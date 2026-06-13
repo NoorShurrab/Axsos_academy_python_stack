@@ -112,3 +112,9 @@ p {
     font-size: 1.3rem;
     margin-bottom: 1rem;
 }
+.field-error {
+    color: #ff3333 !important;
+    font-size: 1rem;
+    margin-top: 5px;
+    display: block;
+}

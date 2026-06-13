@@ -16,23 +16,51 @@
         <div>
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" value="{{ show.title }}" required>
+            {% if messages %}
+            {% for message in messages %}
+                {% if 'title' in message.tags %}
+                    <span class="field-error">⚠️ {{ message }}</span>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         </div>
 
         <div class="form_row">
             <div class="form-group">
                 <label for="network">Network:</label>
                 <input type="text" id="network" name="network" value="{{ show.network }}" required>
+                {% if messages %}
+                {% for message in messages %}
+                    {% if 'network' in message.tags %}
+                        <span class="field-error">⚠️ {{ message }}</span>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
             </div>
             
             <div class="form-group">
                 <label for="release_date">Release Date:</label>
                 <input type="date" id="release_date" name="release_date" value="{{ show.release_date|date:'Y-m-d' }}" required>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if 'release_date' in message.tags %}
+                            <span class="field-error">⚠️ {{ message }}</span>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
 
         <div>
             <label for="description">Description:</label>
             <textarea id="description" name="description">{{ show.description }}</textarea>
+            {% if messages %}
+            {% for message in messages %}
+                {% if 'description' in message.tags %}
+                    <span class="field-error">⚠️ {{ message }}</span>
+                {% endif %}
+            {% endfor %}
+            {% endif %}
         </div>
         
         <div class="btn">

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <div class="success_content">
+        <div class="success_mess">
+            <h1>Success! Welcome, {{ request.session.user_name }}!</h1>
+            <p style="color: rgb(21, 120, 19);">Successfully registered (or logged in)!</p>
+        </div>
+        
+        <div class="nav">
+            <a href="/logout">Log Out</a>
+        </div>
+    </div>
+</body>
+</html>

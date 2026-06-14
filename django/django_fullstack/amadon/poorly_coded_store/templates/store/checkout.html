@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon - Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-[80%] mx-auto p-8">
+
+    <div class="mt-10 max-w-2xl p-8">
+        
+        <h3 class="text-2xl font-bold mb-2">Thank you for your business!</h3>
+        <p class="text-lg mb-4">
+            We charged your credit card for <span class="font-mono">${{ last_charge }}</span>.
+        </p>
+
+        <div class="p-4 mb-6">
+            <p>
+                You have ordered <span class="font-bold">{{ total_quantity }}</span> items so far and spent <br>
+                <span class="font-bold font-mono">${{ total_spent }}</span> with Amadon.com!
+            </p>
+        </div>
+
+        <p>
+            <a href="/" class="inline-block text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">
+                Go back
+            </a>
+        </p>
+    </div>
+
+</body>
+</html>

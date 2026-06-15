@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wall</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+
+    <div class="header">
+        <h2>CodingDojo Wall</h2>
+        <nav>
+            <p>Welcome {{ current_user.first_name }}</p>
+            <a href="/logout">Log Off</a>
+        </nav>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <div class="container">
+    <h3>Post a message</h3>
+    <form action="/wall/post_message" method="POST">
+        {% csrf_token %}
+        <textarea name="message" rows="4" cols="80"></textarea>
+        <div class="button-message">
+            <button type="submit">Post a message</button>
+        </div>
+    </form>
+
+    {% for message in all_messages %}
+        <div class="message-box">
+            <div class="message-detail">
+            <div class="message-title">
+            <h4>{{ message.user.first_name }} {{ message.user.last_name }} - {{ message.created_at|date:"F jS Y" }}</h4>
+            <p>{{ message.message }}</p>
+            </div>
+            {% if message.user.id == request.session.user_id %}
+                <a class="delete-btn" href="/wall/delete_message/{{ message.id }}">Delete Message</a>
+            {% endif %}
+        </div>
+            {% for comment in message.comments.all %}
+                <div class="comment-box">
+                    <h5>{{ comment.user.first_name }} {{ comment.user.last_name }} - {{ comment.created_at|date:"F jS Y" }}</h5>
+                    <p>{{ comment.comment }}</p>
+                </div>
+            {% endfor %}
+
+            <div style="margin-left: 40px; margin-top: 15px;">
+                <h6>Post a comment</h6>
+                <form action="/wall/post_comment/{{ message.id }}" method="POST">
+                    {% csrf_token %}
+                    <textarea name="comment" rows="4" cols="60"></textarea><br>
+                    <div class="button-comment">
+                        <button type="submit">Post a comment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>

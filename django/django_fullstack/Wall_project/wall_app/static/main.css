@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+.container {
+    width: 80%;
+    margin: 40px auto; 
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+    padding: 30px 30px 20px;
+    margin-bottom: 20px;
+}
+nav {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+textarea {
+    width: 100%;
+}
+.message-box {
+    padding: 15px;
+    margin-top: 20px;
+}
+.button-message {
+    text-align: right;
+}
+.button-message button {
+    padding: 10px 20px;
+    border: 2px solid black;
+    box-shadow: 3px 3px 0px black;
+    color: white;
+    background-color: blue;
+}
+.button-comment {
+    text-align: right;
+}
+.button-comment button {
+    padding: 10px 20px;
+    border: 2px solid black;
+    box-shadow: 3px 3px 0px black;
+    color: white;
+    background-color: green;
+}
+.message-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+}
+.delete-btn {
+    font-size: 12px;
+    margin-left: 10px;
+}

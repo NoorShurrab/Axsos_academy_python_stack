@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="box">
+            <h2>Login</h2>
+            {% if messages %}
+            {% for msg in messages %}
+                {% if 'success-msg' in msg.tags %}
+                    <p class="success-msg">{{ msg }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Email:</label>
+                    <div class="input-container">
+                    <input type="text" name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <div class="input-container">
+                    <input type="password" name="password">
+                    </div>
+                </div>
+                <div style="text-align: center">
+                    {% if messages %}
+                        {% for msg in messages %}
+                            {% if 'login' in msg.tags %}<p class="error">{{ msg }}</p>{% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+        
+                <div class="btn">
+                    <button type="submit">Log In</button>
+                </div>
+                                <p style="margin-top: 20px; text-align: center;">
+            Don't have an account? <a href="/">Register here</a>
+        </p>
+            </form>
+        </div>
+</body>
+</html>
